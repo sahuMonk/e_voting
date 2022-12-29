@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-6 is-offset-3">
+    <h3 class="title has-text-success">Live Result</h3>
+    <div class="box">
+        <form action="/update/{{candidates_update.id}}" METHOD="POST">
+            <div class="field">
+                    <label>First Name</label><br>
+                    <input type="text" placeholder="First Name" name="first_name" value="{{candidates_update.first_name}}" autofocus="">
+            </div>
+            <div class="field">
+                    <label>Last Name</label><br>
+                    <input type="text" placeholder="Last Name" name="last_name" value="{{candidates_update.last_name}}">
+            </div>
+            <div class="field">
+                    <label>Candudate Agenda</label><br>
+                <textarea type="text" placeholder="Candidate Agenda" name="agenda" value="{{candidates_update.agenda}}"></textarea>
+            </div>
+            <input type="submit" value="Update" class="button is-info is-small">
+            <a href="{{ url_for('candidate') }}" class="button is-info is-small">
+                Back
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
