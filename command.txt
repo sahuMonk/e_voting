@@ -1,4 +1,3 @@
-10000001	Admin	admin@gmail.com	adminpassword
+10000001	Admin	admin@gmail.com	123456789
 
-# creating an admin and an random user
-admin = UserModel(roll_num=10000001, name='Admin', email="admin@gmail.com", password=generate_password_hash("adminpassword"), admin=1)
+admin = UserModel(roll_num=10000001, name='Admin', email="admin@gmail.com", password=generate_password_hash("123456789"), admin=1)
