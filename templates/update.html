@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="column is-6 is-offset-3">
-    <h3 class="title has-text-success">Live Result</h3>
+    <h3 class="title has-text-success">Update {{candidates_update.first_name}} {{candidates_update.last_name}} information</h3>
     <div class="box">
         <form action="/update/{{candidates_update.id}}" METHOD="POST">
             <div class="field">

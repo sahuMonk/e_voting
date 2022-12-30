@@ -17,6 +17,9 @@
                       <p class="column is-7 has-text-dark ">"{{use.email}}"</p>
                       <p class="column is-2 has-text-dark ">{{use.admin}}</p>
                       {% if current_user.admin == 1 %}
+                          <a href="/user_update/{{use.id}}" class="column is-3 button is-warning">
+                                    Update
+                          </a>
                           <a href ="/delete_user/{{use.id}}" class="column is-4 button is-danger" onclick="return confirm('Are you sure to Delete?')">
                               Delete
                           </a>

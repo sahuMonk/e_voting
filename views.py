@@ -153,6 +153,24 @@ def update(id):
         return render_template('update.html', candidates_update=candidates_update)
 
 
+# only for admin to update information of user
+@app.route('/user_update/<int:id>', methods=['GET', 'POST'])
+def user_update(id):
+    user_update = UserModel.query.get(id)
+    if request.method == 'POST':
+        user_update.name = request.form['name']
+        user_update.roll_num = request.form['roll_num']
+        user_update.email = request.form['email']
+        user_update.admin = request.form['admin']
+        try:
+            db.session.commit()
+            return redirect('/users')
+        except:
+            return "There was a problem in updating"
+    else:
+        return render_template('user_update.html', user_update=user_update)
+
+
 # only for admin to remove candidate from election
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -164,6 +182,8 @@ def delete(id):
     except:
         return "There was a problem in deleting"
 
+
+# only for admin to remove user from system
 @app.route('/delete_user/<int:id>')
 def delete_user(id):
     user_delete = UserModel.query.get(id)

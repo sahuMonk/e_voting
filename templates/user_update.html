@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-6 is-offset-3">
+    <h3 class="title has-text-success">Update {{user_update.name}} information</h3>
+    <div class="box">
+        <form action="/user_update/{{user_update.id}}" METHOD="POST">
+            <div class="field">
+                    <label>Name</label><br>
+                    <input type="text" placeholder="Name" name="name" value="{{user_update.name}}" autofocus="">
+            </div>
+            <div class="field">
+                    <label>Roll Num</label><br>
+                    <input type="text" placeholder="Roll Num" name="roll_num" value="{{user_update.roll_num}}">
+            </div>
+            <div class="field">
+                    <label>Email</label><br>
+                <input type="email" placeholder="Email" name="email" value="{{user_update.email}}">
+            </div>
+            <div class="field">
+                    <label>Admin</label><br>
+                <input type="text" placeholder="Admin" name="admin" value="{{user_update.admin}}">
+            </div>
+            <input type="submit" value="Update" class="button is-info is-small">
+            <a href="{{ url_for('users') }}" class="button is-info is-small">
+                Back
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
