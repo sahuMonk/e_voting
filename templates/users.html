@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero has-background-white-ter is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+          <h1 class="title has-text-success">
+                Users Information
+          </h1>
+          <div class="columns">
+          <div class="column ">
+              {% for use in use %}
+              <div class="box">
+              <div class="tile is-parent">
+                  <article class="columns">
+                      <p class="column is-5 has-text-dark">{{ use.roll_num }}</p>
+                      <p class="column is-6 has-text-dark">{{use.name}}</p>
+                      <p class="column is-7 has-text-dark ">"{{use.email}}"</p>
+                      <p class="column is-2 has-text-dark ">{{use.admin}}</p>
+                      <a href ="/delete_user/{{use.id}}" class="column is-4 button is-danger" onclick="return confirm('Are you sure to Delete?')">
+                          Delete
+                      </a>
+                  </article>
+              </div>
+              </div>
+              {% endfor %}
+
+          </div>
+          </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

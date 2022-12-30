@@ -3,18 +3,47 @@
 {% block content %}
 
 <div class="columns">
-      <div class="column is-5">
-        <img src="static/voteicon.jpg">
-      </div>
-    <div class="column is-7 ">
+    <div class="column is-8 is-offset-2 ">
             <h3 class="title">Live Result</h3>
-                <a href="{{ url_for('live_result_prez') }}" class="button is-link is-outlined">
-                        <h1 class="subtitle has-text-success"> Presidential Election Results</h1>
-                </a><br><br>
-                <a href="{{ url_for('live_result_vice') }}" class="button is-link is-outlined ">
-                        <h1 class="subtitle has-text-success"> Vice-Presidential Election Results</h1>
-                </a>
+    <div class="box">
+        <h1 class="subtitle has-text-success"> Presidential Election Results</h1>
+        <div class="column is-4 is-offset-4">
+        <table class ="table table-hover table dark">
+            <tr>
+                <th>Name</th>
+                <th>Roll_num</th>
+                <th>No.of votes</th>
+            </tr>
+            {% for row in candidate %}
+            <tr>
+                <td>{{row.first_name}}</td>
+                <td>{{row.roll_num}}</td>
+                <td>{{row.no_of_votes}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
     </div>
+        <div class="box">
+            <h1 class="subtitle has-text-success"> Vice-Presidential Election Results</h1>
+            <div class="column is-4 is-offset-4">
+            <table class ="table table-hover table dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Roll_num</th>
+                    <th>No.of votes</th>
+                </tr>
+                {% for row in cand %}
+                <tr>
+                    <td>{{row.first_name}}</td>
+                    <td>{{row.roll_num}}</td>
+                    <td>{{row.no_of_votes}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+        </div>
+</div>
 </div>
 
 {% endblock %}

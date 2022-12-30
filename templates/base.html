@@ -38,6 +38,9 @@
                             </a>
                             {% endif %}
                             {% if current_user.admin == 1 %}
+                            <a href="{{ url_for('users') }}" class="navbar-item has-text-success">
+                                Users
+                            </a>
                             <a href="{{ url_for('candidate_register') }}" class="navbar-item has-text-success">
                                 Register Candidate
                             </a>

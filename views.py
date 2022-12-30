@@ -1,5 +1,5 @@
 from main import app
-from models import VotesModel, CandidateModel, db
+from models import VotesModel, CandidateModel, db, UserModel
 from flask import redirect, render_template, flash, url_for, request
 from flask_login import login_required, current_user, logout_user
 import string
@@ -37,6 +37,11 @@ def post_vote():
     else:
         return redirect(url_for('profile'))
 
+
+@app.route("/users")
+def users():
+    use = UserModel.query.all()
+    return render_template("users.html", use=use)
 
 # candidate page to know about candidate who are standing in election
 @app.route("/candidate")
@@ -115,31 +120,20 @@ def candidate_post():
 # live result page
 @app.route("/live_result")
 def live_result():
-    return render_template("live_result.html")
-
-
-# page for live result for post of president
-@app.route("/live_result_prez")
-def live_result_prez():
-    prez = db.session.execute(
+    prez = db.session().execute(
         """select c.first_name,c.roll_num,count(v.post_1) as no_of_votes 
         from candidates c left join votes v 
         on c.roll_num = v.post_1 
         where c.post='President' 
         group by c.roll_num,c.first_name""")
-    return render_template("prez_result.html", candidate=prez)
-
-
-# page for live result for post of vice-president
-@app.route("/live_result_vice")
-def live_result_vice():
     vice = db.session.execute(
         """select c.first_name,c.roll_num,count(v.post_2) as no_of_votes 
         from candidates c left join votes v 
         on c.roll_num = v.post_2 
         where c.post='Vice-President' 
         group by c.roll_num,c.first_name""")
-    return render_template("vice_result.html", cand=vice)
+
+    return render_template("live_result.html", candidate=prez, cand=vice)
 
 
 # only for admin to update information of register candidate
@@ -169,5 +163,17 @@ def delete(id):
         print("deleted")
         flash("Candidate Deleted Successfully")
         return redirect('/candidate')
+    except:
+        return "There was a problem in deleting"
+
+@app.route('/delete_user/<int:id>')
+def delete_user(id):
+    user_delete = UserModel.query.get(id)
+    try:
+        db.session.delete(user_delete)
+        db.session.commit()
+        print("deleted")
+        flash("User Deleted Successfully")
+        return redirect('/users')
     except:
         return "There was a problem in deleting"
