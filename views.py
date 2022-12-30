@@ -160,8 +160,6 @@ def delete(id):
     try:
         db.session.delete(candidate_delete)
         db.session.commit()
-        print("deleted")
-        flash("Candidate Deleted Successfully")
         return redirect('/candidate')
     except:
         return "There was a problem in deleting"
@@ -172,8 +170,6 @@ def delete_user(id):
     try:
         db.session.delete(user_delete)
         db.session.commit()
-        print("deleted")
-        flash("User Deleted Successfully")
         return redirect('/users')
     except:
         return "There was a problem in deleting"
