@@ -23,7 +23,7 @@
                     </a>
                 </div>
                 <div class="container">
-                    <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div id="navbarMenuHeroA" class="navbar-menu is-active">
     
                         <div class="navbar-end">
                             <a href="{{ url_for('index') }}" class="navbar-item has-text-success">
@@ -46,14 +46,14 @@
                             </a>
                             {% endif %}
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item has-text-success">
-                                Logout
-                            </a>
                             <a href="{{ url_for('candidate') }}" class="navbar-item has-text-success">
                                 Candidate Info
                             </a>
                             <a href="{{ url_for('live_result') }}" class="navbar-item has-text-success">
                                 Live Result
+                            </a>
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item has-text-success">
+                                Logout
                             </a>
                             {% endif %}
                             {% if current_user.is_authenticated and not current_user.admin == 1 %}
